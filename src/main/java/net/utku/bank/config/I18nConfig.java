@@ -1,4 +1,4 @@
-package net.utku.bank.i18n;
+package net.utku.bank.config;
 
 import java.util.Locale;
 
