@@ -28,7 +28,7 @@ public class EmployeeController {
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	@GetMapping("/add")
+	@GetMapping("add")
 	public String renderAddPage(Model model) {
 		EmployeeDto employeeDto = new EmployeeDto();
 		
