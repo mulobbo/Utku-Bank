@@ -19,7 +19,7 @@ import net.utku.bank.db.dao.EmployeeDao;
 import net.utku.bank.db.model.Employee;
 
 @Controller
-@RequestMapping("/employee")
+@RequestMapping("employee")
 public class EmployeeController {
 	
 	@Autowired
@@ -28,7 +28,7 @@ public class EmployeeController {
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	@GetMapping("add")
+	@GetMapping("/add")
 	public String renderAddPage(Model model) {
 		EmployeeDto employeeDto = new EmployeeDto();
 		
