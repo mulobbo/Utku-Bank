@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
+import net.utku.bank.backoffice.dto.EmployeeDto;
 import net.utku.bank.db.dao.EmployeeDao;
 import net.utku.bank.db.model.Employee;
-import net.utku.bank.dto.EmployeeDto;
 
 @Controller
-@RequestMapping("employee")
-public class EmployeeController {
+@RequestMapping("/employee")
+public class EmployeeController extends AbstractController {
 
 	@Autowired
 	private EmployeeDao employeeDao;
@@ -46,6 +46,10 @@ public class EmployeeController {
 	@PostMapping("/add")
 	public String addEmployee(@ModelAttribute @Validated EmployeeDto employeeDto, BindingResult bindingResult,
 			Model model) {
+		
+		if (!canModifyData()) {
+			return "error/notAdminError";
+		}
 
 		if (bindingResult.hasErrors() || !employeeDto.getConfirmPassword().equals(employeeDto.getPassword())) {
 			model.addAttribute("errorMessage", bindingResult.getAllErrors().get(0).getDefaultMessage());
@@ -62,6 +66,11 @@ public class EmployeeController {
 
 	@GetMapping("/update/{id}")
 	public String renderUpdatePage(Model model, @PathVariable("id") Long id) {
+		
+		if (!canModifyData() && !isLogginUser(id)) {
+			return "error/notAdminError";
+		}
+		
 
 		Employee employeeEntity = employeeDao.findById(id).get();
 		EmployeeDto employeeDto = new EmployeeDto();
@@ -120,4 +129,5 @@ public class EmployeeController {
 	public boolean checkCitizenNumber(@PathVariable("citizenNumber") String citizenNumber) {
 		return employeeDao.existsByCitizenNumber(citizenNumber);
 	}
+
 }

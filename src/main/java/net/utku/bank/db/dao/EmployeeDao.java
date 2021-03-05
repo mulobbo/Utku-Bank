@@ -16,9 +16,9 @@ public class EmployeeDao {
 	
 	@Autowired
 	private ModelMapper modelMapper;
-
+	
 	private List<Employee> db = new ArrayList<Employee>();
-
+	
 	public List<Employee>  findAll() {
 		return db;
 	}
@@ -83,4 +83,14 @@ public class EmployeeDao {
 		}
 	}
 
+	public Employee findByEmail(String email) { 
+		for (Employee e : db) {
+			if (e.getEmail().equals(email))
+				return e;
+		}
+		return null;
+	}
+
+
 }
+

@@ -1,4 +1,4 @@
-package net.utku.bank.dto;
+package net.utku.bank.backoffice.dto;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,4 +1,4 @@
-package net.utku.bank.config;
+package net.utku.bank.backoffice.config;
 
 import java.util.Locale;
 
