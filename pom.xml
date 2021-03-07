@@ -56,5 +56,6 @@
 	<modules>
 		<module>utku-bank-db</module>
 		<module>utku-bank-backoffice</module>
+		<module>utku-bank-api</module>
 	</modules>
 </project>
